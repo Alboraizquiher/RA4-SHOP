@@ -1,5 +1,6 @@
 package main;
 
+import java.util.ArrayList;
 import model.Product;
 import model.Sale;
 import java.util.Scanner;
@@ -7,15 +8,31 @@ import java.util.Scanner;
 public class Shop {
 
     private double cash = 100.00;
-    private Product[] inventory;
+   /*EJERCICO 1.A*/ 
+    /*private Product[] inventory;*/
+     private ArrayList<Product> inventory;
+    /*   Modificar la declaración actuales atributos [ ] a arraylist y adaptar su creación, lectura,
+        actualización, borrado si aplica.
+     
+      Modify the actual declaration of the atributs [] to a arrayList and adaptate his creation,reading,actualization ad delete if this aply
+        */
     private int numberProducts;
-    private Sale[] sales;
+    
+       /*EJERCICO 1.B*/ 
+    
+    private ArrayList<Sale> sales;
+    
+    /*private Sale[] sales;*/
 
     final static double TAX_RATE = 1.04;
 
     public Shop() {
-        inventory = new Product[10];
+       
+        /*inventory = new Product[10];*/
+        
     }
+    
+    
 
     public static void main(String[] args) {
         Shop shop = new Shop();
@@ -86,6 +103,7 @@ public class Shop {
         addProduct(new Product("Pera", 20.00, true, 20));
         addProduct(new Product("Hamburguesa", 30.00, true, 30));
         addProduct(new Product("Fresa", 5.00, true, 20));
+        
     }
 
     /**
@@ -227,12 +245,13 @@ public class Shop {
      */
     public void addProduct(Product product) {
         if (isInventoryFull()) {
-            System.out.println("No se pueden añadir más productos, se ha alcanzado el máximo de " + inventory.length);
+            System.out.println("No se pueden añadir más productos, se ha alcanzado el máximo de " + inventory.size());
             return;
         }
-        inventory[numberProducts] = product;
+        inventory.set(numberProducts, product);
         numberProducts++;
     }
+    
 
     /**
      * check if inventory is full or not
@@ -254,9 +273,9 @@ public class Shop {
      * @return product found by name
      */
     public Product findProduct(String name) {
-        for (int i = 0; i < inventory.length; i++) {
-            if (inventory[i] != null && inventory[i].getName().equals(name)) {
-                return inventory[i];
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i) != null && inventory.get(i).getName().equalsIgnoreCase(name)) {
+                return inventory.get(i);
             }
         }
         return null;
