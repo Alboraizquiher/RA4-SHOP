@@ -3,6 +3,7 @@ package model;
 public class Product {
 	private int id;
 	private String name;
+        private double expire;
 	private double publicPrice;
 	private double wholesalerPrice;
 	private boolean available;
@@ -38,8 +39,10 @@ public class Product {
 	}
 
 	public double getPublicPrice() {
+      
 		return publicPrice;
 	}
+        
 
 	public void setPublicPrice(double publicPrice) {
 		this.publicPrice = publicPrice;
@@ -60,7 +63,7 @@ public class Product {
 	public void setAvailable(boolean available) {
 		this.available = available;
 	}
-
+      
 	public int getStock() {
 		return stock;
 	}
@@ -77,8 +80,11 @@ public class Product {
 		Product.totalProducts = totalProducts;
 	}
 
-	public void expire() {
+	public  double getexpire() {
 		EXPIRATION_RATE = 0.2;
-		this.publicPrice = this.getPublicPrice() * EXPIRATION_RATE;
+		this.expire = getWholesalerPrice()* EXPIRATION_RATE;
+                return expire;
+                
 	}
+      
 }
